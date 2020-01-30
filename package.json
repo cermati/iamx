@@ -4,6 +4,7 @@
   "description": "Centralized IAM",
   "main": "index.js",
   "dependencies": {
+    "@alicloud/pop-core": "1.7.9",
     "aws-sdk": "2.610.0",
     "bluebird": "3.7.2",
     "randomstring": "1.1.5"
