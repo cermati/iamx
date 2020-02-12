@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const ENGINE           = 'example';
 const NAME             = 'IAMX Example Connector';

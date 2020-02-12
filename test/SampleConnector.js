@@ -1,19 +1,18 @@
 'use strict';
 
-const ENGINE           = 'example';
-const NAME             = 'IAMX Example Connector';
+const ENGINE           = 'sample-engine';
+const NAME             = 'Sample Connector';
 const VERSION          = '1.0.0';
 const EXECUTIONS       = [ 'provision', 'revoke', 'show' ];
-const REGVALSPEC       = { credentials: { required: true, type: 'object' }, region: { required: true, type: 'string' } };
-const WRITECONTEXTSPEC = { username: { required: true, type: 'string' }, something: { required: true, type: 'number' } };
-const READCONTEXTSPEC  = { username: { required: true, type: 'string' }, something: { required: true, type: 'number' }, page: { required: true, type: 'number' } };
+const REGVALSPEC       = { credentials: { required: true, type: 'object' } };
+const WRITECONTEXTSPEC = { username: { required: true, type: 'string' }, password: { required: true, type: 'string' } };
+const READCONTEXTSPEC  = { keyword: { required: true, type: 'string' }, page: { required: false, type: 'number' } };
 
-exports.Connector = class ExampleConnector {
+exports.Connector = class SampleConnector {
   constructor(config = {}) {
     this.config = config;
     this.Promise = require('bluebird');
   };
-
 
   engine () {
     return ENGINE;

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 let registry = require('iamx').CredentialsRegistry;
 let Executor = require('iamx').IAMExecutor;
