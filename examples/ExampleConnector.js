@@ -14,7 +14,6 @@ exports.Connector = class ExampleConnector {
     this.Promise = require('bluebird');
   };
 
-
   engine () {
     return ENGINE;
   };

@@ -1,0 +1,7 @@
+- key: example-indodana
+  engine: example
+  data:
+    credentials:
+      accessKeyId: example
+      secretAccessKey: example
+    region: ap-southeast-1
