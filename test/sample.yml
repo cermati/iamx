@@ -1,0 +1,6 @@
+- key: sample-key
+  engine: sample-engine
+  data:
+    credentials:
+      username: sample-username
+      password: sample-password

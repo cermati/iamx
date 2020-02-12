@@ -10,11 +10,15 @@
     "randomstring": "1.1.5",
     "yaml": "1.7.2"
   },
+  "devDependencies": {
+    "mocha": "7.0.1",
+    "chai": "4.2.0"
+  },
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Edwin Tunggawan <vcc.edwint@gmail.com>",
   "license": "ISC"
