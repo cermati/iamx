@@ -8,10 +8,9 @@ registry.set(
   'example',
   {
     credentials: {
-      accessKeyId: 'example',
-      secretAccessKey: 'example'
-    },
-    region: 'ap-southeast-1'
+      username: 'example',
+      password: 'example'
+    }
   });
 
 let ExampleConnector = require('./ExampleConnector').Connector;
@@ -19,7 +18,7 @@ let executor = new Executor(ExampleConnector, registry.fetch('example-entry'));
 
 let context = {
   username: 'example-user',
-  userPolicyArn: 'example-user-policy-arn'
+  password: 'example-password'
 };
 
 // Provision user access according to context
