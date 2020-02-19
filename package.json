@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "bluebird": "3.7.2",
+    "jsonschema": "1.2.5",
     "yaml": "1.7.2"
   },
   "devDependencies": {

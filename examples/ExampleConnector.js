@@ -4,9 +4,39 @@ const ENGINE           = 'example';
 const NAME             = 'IAMX Example Connector';
 const VERSION          = '1.0.0';
 const EXECUTIONS       = [ 'provision', 'revoke', 'show' ];
-const REGVALSPEC       = { credentials: { required: true, type: 'object' }, region: { required: true, type: 'string' } };
-const WRITECONTEXTSPEC = { username: { required: true, type: 'string' }, something: { required: true, type: 'number' } };
-const READCONTEXTSPEC  = { username: { required: true, type: 'string' }, something: { required: true, type: 'number' }, page: { required: true, type: 'number' } };
+
+const REGVALSPEC       = {
+  type: 'object',
+  properties: {
+    credentials: {
+      type: 'object',
+      properties: {
+        username: { type: 'string' },
+        password: { type: 'string' }
+      },
+      required: [ 'username', 'password' ]
+    }
+  },
+  required: [ 'credentials' ]
+};
+
+const WRITECONTEXTSPEC = {
+  type: "object",
+  properties: {
+    username: { type: 'string' },
+    password: { type: 'string' }
+  },
+  required: [ 'username', 'password' ]
+};
+
+const READCONTEXTSPEC  = {
+  type: "object",
+  properties: {
+    keyword: { type: 'string' },
+    page: { type: 'integer', default: 1 }
+  },
+  required: [ 'keyword' ]
+};
 
 exports.Connector = class ExampleConnector {
   constructor(config = {}) {
