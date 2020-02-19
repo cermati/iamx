@@ -2,12 +2,9 @@
   "name": "iamx",
   "version": "1.0.0",
   "description": "Centralized IAM",
-  "main": "index.js",
+  "main": "lib/index.js",
   "dependencies": {
-    "@alicloud/pop-core": "1.7.9",
-    "aws-sdk": "2.610.0",
     "bluebird": "3.7.2",
-    "randomstring": "1.1.5",
     "yaml": "1.7.2"
   },
   "devDependencies": {
@@ -20,6 +17,14 @@
   "scripts": {
     "test": "mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdsdkkk/iamx.git"
+  },
   "author": "Edwin Tunggawan <vcc.edwint@gmail.com>",
-  "license": "ISC"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sdsdkkk/iamx/issues"
+  },
+  "homepage": "https://github.com/sdsdkkk/iamx#readme"
 }
