@@ -19,7 +19,7 @@ describe('IAM Executor', () => {
     password: 'sample-password'
   };
   let sampleReadContext = {
-    keyword: 'sample-keywprd',
+    keyword: 'sample-keyword',
     page: 1
   };
 
