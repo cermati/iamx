@@ -14,7 +14,7 @@ registry.set(
   });
 
 let ExampleConnector = require('./ExampleConnector').Connector;
-let executor = new Executor(ExampleConnector, registry.fetch('example-entry'));
+let executor = new Executor(ExampleConnector, registry.get('example-entry'));
 
 let context = {
   username: 'example-user',
