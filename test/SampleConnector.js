@@ -38,6 +38,15 @@ const READCONTEXTSPEC  = {
   required: [ 'keyword' ]
 };
 
+const LISTCONTEXTSPEC = {
+  type: "object",
+  properties: {
+    keyword: { type: 'string' },
+    page: { type: 'integer', default: 1 }
+  },
+  required: [ 'keyword' ]
+}
+
 exports.Connector = class SampleConnector {
   constructor(config = {}) {
     this.config = config;
@@ -70,6 +79,10 @@ exports.Connector = class SampleConnector {
 
   writeContextFormat () {
     return WRITECONTEXTSPEC;
+  };
+
+  listContextFormat () {
+    return LISTCONTEXTSPEC;
   };
 
   provision (context) {
