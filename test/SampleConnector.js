@@ -3,7 +3,7 @@
 const ENGINE           = 'sample-engine';
 const NAME             = 'Sample Connector';
 const VERSION          = '1.0.0';
-const EXECUTIONS       = [ 'provision', 'revoke', 'show' ];
+const EXECUTIONS       = [ 'provision', 'revoke', 'show', 'fetchBatch' ];
 
 const REGVALSPEC       = {
   type: 'object',
@@ -82,5 +82,9 @@ exports.Connector = class SampleConnector {
 
   show (context) {
     return this.Promise.resolve(context);
+  }
+
+  fetchBatch (context) {
+    return this.Promise.resolve(context)
   }
 };
