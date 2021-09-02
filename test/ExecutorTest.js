@@ -46,4 +46,12 @@ describe('IAM Executor', () => {
       assert.equal(responseContext.page, sampleReadContext.page);
     });
   });
+
+  it('can execute fetchBatch workflow', () => {
+    let executor = new Executor(SampleConnector, regVal);
+    executor.fetchBatch(sampleReadContext).then((responseContext) => {
+      assert.equal(responseContext.keyword, sampleReadContext.keyword);
+      assert.equal(responseContext.page, sampleReadContext.page);
+    });
+  })
 });

@@ -3,7 +3,7 @@
 const ENGINE           = 'sample-engine';
 const NAME             = 'Sample Connector';
 const VERSION          = '1.0.0';
-const EXECUTIONS       = [ 'provision', 'revoke', 'show' ];
+const EXECUTIONS       = [ 'provision', 'revoke', 'show', 'fetchBatch' ];
 
 const REGVALSPEC       = {
   type: 'object',
@@ -37,6 +37,15 @@ const READCONTEXTSPEC  = {
   },
   required: [ 'keyword' ]
 };
+
+const LISTCONTEXTSPEC = {
+  type: "object",
+  properties: {
+    keyword: { type: 'string' },
+    page: { type: 'integer', default: 1 }
+  },
+  required: [ 'keyword' ]
+}
 
 exports.Connector = class SampleConnector {
   constructor(config = {}) {
@@ -72,6 +81,10 @@ exports.Connector = class SampleConnector {
     return WRITECONTEXTSPEC;
   };
 
+  listContextFormat () {
+    return LISTCONTEXTSPEC;
+  };
+
   provision (context) {
     return this.Promise.resolve(context);
   };
@@ -82,5 +95,9 @@ exports.Connector = class SampleConnector {
 
   show (context) {
     return this.Promise.resolve(context);
+  }
+
+  fetchBatch (context) {
+    return this.Promise.resolve(context)
   }
 };
