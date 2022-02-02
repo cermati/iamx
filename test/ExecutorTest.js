@@ -12,15 +12,23 @@ describe('IAM Executor', () => {
   let SampleConnector = require('./SampleConnector').Connector;
   let Executor = require('../lib/index').IAMExecutor;
 
+  const listAccessContextMock = require('./SampleConnector').listAccessContextMock;
+
   credReg.loadYAML(sampleYAML);
   let regVal = credReg.get(registryKey);
+
   let sampleWriteContext = {
     username: 'sample-username',
     password: 'sample-password'
   };
+
   let sampleReadContext = {
     keyword: 'sample-keyword',
     page: 1
+  };
+
+  let sampleListAvailableAccessContext = {
+    keyword: 'sample-keyword'
   };
 
   it('can execute provisioning workflow', () => {
@@ -28,7 +36,7 @@ describe('IAM Executor', () => {
     executor.provision(sampleWriteContext).then((responseContext) => {
       assert.equal(responseContext.username, sampleWriteContext.username);
       assert.equal(responseContext.password, sampleWriteContext.password);
-    });
+    }).catch(e => console.error(e));
   });
 
   it('can execute revocation workflow', () => {
@@ -36,7 +44,7 @@ describe('IAM Executor', () => {
     executor.revoke(sampleWriteContext).then((responseContext) => {
       assert.equal(responseContext.username, sampleWriteContext.username);
       assert.equal(responseContext.password, sampleWriteContext.password);
-    });
+    }).catch(e => console.error(e));
   });
 
   it('can execute data retrieval workflow', () => {
@@ -44,7 +52,7 @@ describe('IAM Executor', () => {
     executor.show(sampleReadContext).then((responseContext) => {
       assert.equal(responseContext.keyword, sampleReadContext.keyword);
       assert.equal(responseContext.page, sampleReadContext.page);
-    });
+    }).catch(e => console.error(e));
   });
 
   it('can execute fetchBatch workflow', () => {
@@ -52,6 +60,13 @@ describe('IAM Executor', () => {
     executor.fetchBatch(sampleReadContext).then((responseContext) => {
       assert.equal(responseContext.keyword, sampleReadContext.keyword);
       assert.equal(responseContext.page, sampleReadContext.page);
-    });
-  })
+    }).catch(e => console.error(e));
+  });
+
+  it('can execute listAvailableAccessContext workflow', () => {
+    let executor = new Executor(SampleConnector, regVal);
+    executor.listAvailableAccessContext(sampleListAvailableAccessContext).then((responseContext) => {
+      assert.deepEqual(responseContext, listAccessContextMock);
+    }).catch(e => console.error(e));
+  });
 });

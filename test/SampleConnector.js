@@ -3,9 +3,9 @@
 const ENGINE           = 'sample-engine';
 const NAME             = 'Sample Connector';
 const VERSION          = '1.0.0';
-const EXECUTIONS       = [ 'provision', 'revoke', 'show', 'fetchBatch' ];
+const EXECUTIONS       = [ 'provision', 'revoke', 'show', 'fetchBatch', 'listAvailableAccessContext' ];
 
-const REGVALSPEC       = {
+const REG_VAL_SPEC       = {
   type: 'object',
   properties: {
     credentials: {
@@ -20,7 +20,7 @@ const REGVALSPEC       = {
   required: [ 'credentials' ]
 };
 
-const WRITECONTEXTSPEC = {
+const WRITE_CONTEXT_SPEC = {
   type: "object",
   properties: {
     username: { type: 'string' },
@@ -29,7 +29,7 @@ const WRITECONTEXTSPEC = {
   required: [ 'username', 'password' ]
 };
 
-const READCONTEXTSPEC  = {
+const READ_CONTEXT_SPEC  = {
   type: "object",
   properties: {
     keyword: { type: 'string' },
@@ -38,7 +38,7 @@ const READCONTEXTSPEC  = {
   required: [ 'keyword' ]
 };
 
-const LISTCONTEXTSPEC = {
+const LIST_CONTEXT_SPEC = {
   type: "object",
   properties: {
     keyword: { type: 'string' },
@@ -47,7 +47,17 @@ const LISTCONTEXTSPEC = {
   required: [ 'keyword' ]
 }
 
-exports.Connector = class SampleConnector {
+const LIST_AVAILABLE_ACCESS_CONTEXT_SPEC = {
+  type: "object",
+  properties: {
+    keyword: { type: 'string' },
+  },
+  required: [ 'keyword' ]
+}
+
+const listAccessContextMock = ['context-1', 'context-2', 'context-3'];
+
+class SampleConnector {
   constructor(config = {}) {
     this.config = config;
     this.Promise = require('bluebird');
@@ -70,19 +80,23 @@ exports.Connector = class SampleConnector {
   };
 
   registryFormat () {
-    return REGVALSPEC;
+    return REG_VAL_SPEC;
   };
 
   readContextFormat () {
-    return READCONTEXTSPEC;
+    return READ_CONTEXT_SPEC;
   };
 
   writeContextFormat () {
-    return WRITECONTEXTSPEC;
+    return WRITE_CONTEXT_SPEC;
   };
 
   listContextFormat () {
-    return LISTCONTEXTSPEC;
+    return LIST_CONTEXT_SPEC;
+  };
+
+  listAvailableAccessContextFormat () {
+    return LIST_AVAILABLE_ACCESS_CONTEXT_SPEC;
   };
 
   provision (context) {
@@ -98,6 +112,15 @@ exports.Connector = class SampleConnector {
   }
 
   fetchBatch (context) {
-    return this.Promise.resolve(context)
+    return this.Promise.resolve(context);
+  }
+
+  listAvailableAccessContext (context) {
+    return this.Promise.resolve(listAccessContextMock);
   }
 };
+
+module.exports = {
+  Connector: SampleConnector,
+  listAccessContextMock
+}
