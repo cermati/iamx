@@ -1,6 +1,6 @@
 {
   "name": "@cermati/iamx",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Centralized IAM",
   "main": "lib/index.js",
   "dependencies": {
