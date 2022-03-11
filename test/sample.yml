@@ -1,6 +1,10 @@
-- key: sample-key
+- &base_creds_data
+  key: sample-key
   engine: sample-engine
   data:
     credentials:
       username: sample-username
       password: sample-password
+
+- <<: *base_creds_data
+  key: sample-key-2
