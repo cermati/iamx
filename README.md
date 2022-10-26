@@ -99,7 +99,7 @@ interface Connector<
   engine(): string
 
   /**
-   * @function engine
+   * @function version
    * @description return the connector engine version
    */
   version(): string
@@ -123,9 +123,8 @@ interface Connector<
    */
   registryFormat(): Record<string, unknown>
 
-
   /**
-   * @function registryFormat
+   * @function readContextFormat
    * @description return the JSON schema definition to be used when validating
    * the passed ReadonlyWorkflowContext value
    */
@@ -216,3 +215,10 @@ interface BatchIterator<ListResultT> {
   next(): Promise<BatchIterator<ListResultT>>
 }
 ```
+
+## Examples
+You can view the examples in this repository [examples](https://github.com/cermati/iamx/tree/35d1505c982f1ea1cf0e888009ef0f966c696bdc/examples) directory and several
+actual connectors that we use:
+1. [AWS Connector](https://github.com/cermati/iamx-aws-connector)
+2. [Aliyun Connector](https://github.com/cermati/iamx-aliyun-connector)
+3. [Redash Connector](https://github.com/cermati/iamx-redash-connector)
