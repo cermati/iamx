@@ -47,7 +47,7 @@ You can refer to the following diagram to get the high level component view of I
    └─────────────────────────────────┘
 ```
 The core component is broken down further into 3 components:
-1. `Credentials Registry`: A key-value store that keeps the credential and configuration information for the platforms that we are supporting in the form of YAML. The core also defines how the credentials will be loaded.
+1. `Credentials Registry`: A key-value store that keeps the credentials and configuration information for the platforms' IAMX connector that we are supporting in the form of YAML. The core also defines how the credentials will be loaded and it will use the credentials to create/delete new users in the platform.
 
 2. `Executor`: The backbone of the IAMX framework, as it’s the module that manages the creation of the connector object and execution of the logic implemented inside the connector object. The execution itself will be driven by the application logic where it’s being used and it’s also responsible to return the execution result to the application logic.
 
