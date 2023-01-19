@@ -176,7 +176,7 @@ interface Connector<
 
   /**
    * @function fetchBatch
-   * @description list all the available access context in batch (if possible).
+   * @description list all the user info details in batch (if possible).
    * Returns BatchIterator whose interface will be defined in the next section.
    */
   fetchBatch(context: ListWorkflowContextT): Promise<BatchIterator>
@@ -198,6 +198,11 @@ interface Connector<
  * list result to the constructor (can be combined into a single object)
  */
 interface BatchIterator<ListResultT> {
+  /**
+   * results - Holds the array of user info details
+   */
+  results: Array<any>
+
   /**
    * @function hasNext
    * @description checks whether the result still have more results or not
