@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "bluebird": "3.7.2",
-    "mocha": "7.0.1",
+    "mocha": "7.2.0",
     "chai": "4.2.0"
   },
   "directories": {
