@@ -13,6 +13,7 @@ describe('IAM Executor', () => {
   let Executor = require('../lib/index').IAMExecutor;
 
   const listAccessContextMock = require('./SampleConnector').listAccessContextMock;
+  const listCustomFieldsOptionsMock = require('./SampleConnector').listCustomFieldsOptionsMock;
 
   credReg.loadYAML(sampleYAML);
   let regVal = credReg.get(registryKey);
@@ -28,6 +29,10 @@ describe('IAM Executor', () => {
   };
 
   let sampleListAvailableAccessContext = {
+    keyword: 'sample-keyword'
+  };
+
+  let sampleListCustomFieldsOptions = {
     keyword: 'sample-keyword'
   };
 
@@ -67,6 +72,13 @@ describe('IAM Executor', () => {
     let executor = new Executor(SampleConnector, regVal);
     executor.listAvailableAccessContext(sampleListAvailableAccessContext).then((responseContext) => {
       assert.deepEqual(responseContext, listAccessContextMock);
+    }).catch(e => console.error(e));
+  });
+
+  it('can execute listCustomFieldsOptions workflow', () => {
+    let executor = new Executor(SampleConnector, regVal);
+    executor.listCustomFieldsOptions(sampleListCustomFieldsOptions).then((responseContext) => {
+      assert.deepEqual(responseContext, listCustomFieldsOptionsMock);
     }).catch(e => console.error(e));
   });
 });

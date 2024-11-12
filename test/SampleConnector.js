@@ -3,7 +3,14 @@
 const ENGINE           = 'sample-engine';
 const NAME             = 'Sample Connector';
 const VERSION          = '1.0.0';
-const EXECUTIONS       = [ 'provision', 'revoke', 'show', 'fetchBatch', 'listAvailableAccessContext' ];
+const EXECUTIONS       = [
+  'provision',
+  'revoke',
+  'show',
+  'fetchBatch',
+  'listAvailableAccessContext',
+  'listCustomFieldsOptions'
+];
 
 const REG_VAL_SPEC       = {
   type: 'object',
@@ -57,6 +64,41 @@ const LIST_AVAILABLE_ACCESS_CONTEXT_SPEC = {
 
 const listAccessContextMock = ['context-1', 'context-2', 'context-3'];
 
+const LIST_CUSTOM_FIELDS_OPTIONS_CONTEXT_SPEC = {
+  type: "object",
+  properties: {
+    keyword: { type: 'string' },
+  },
+  required: [ 'keyword' ]
+}
+
+const listCustomFieldsOptionsMock = {
+  roles: [
+    {
+      key: "role-1",
+      value: "Role 1"
+    },
+    {
+      key: "role-2",
+      value: "Role 2"
+    }
+  ],
+  productHandling: [
+    {
+      key: "product-1",
+      value: "Product 1"
+    },
+    {
+      key: "product-2",
+      value: "Product 2"
+    },
+    {
+      key: "product-3",
+      value: "Product 3"
+    }
+  ]
+};
+
 class SampleConnector {
   constructor(config = {}) {
     this.config = config;
@@ -99,6 +141,10 @@ class SampleConnector {
     return LIST_AVAILABLE_ACCESS_CONTEXT_SPEC;
   };
 
+  listCustomFieldsOptionsContextFormat () {
+    return LIST_CUSTOM_FIELDS_OPTIONS_CONTEXT_SPEC;
+  };
+
   provision (context) {
     return this.Promise.resolve(context);
   };
@@ -118,9 +164,14 @@ class SampleConnector {
   listAvailableAccessContext (context) {
     return this.Promise.resolve(listAccessContextMock);
   }
+
+  listCustomFieldsOptions(context) {
+    return this.Promise.resolve(listCustomFieldsOptionsMock);
+  }
 };
 
 module.exports = {
   Connector: SampleConnector,
-  listAccessContextMock
+  listAccessContextMock,
+  listCustomFieldsOptionsMock
 }

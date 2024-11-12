@@ -73,7 +73,10 @@ Context required to execute the list workflow (used in `fetchBatch` method). The
 5. `ListAvailableAccessContextWorkflowContext`  
 Context required to execute the list available access context of a target platform dynamically.
 
-6. `AccessContext`  
+6. `ListCustomFieldsOptionsWorkflowContext`  
+Context required to execute the list of custom fields options of a target platform dynamically.
+
+7. `AccessContext`  
 The key-value pair (or sometimes just the value) that represents a group/role/other similar terms name that is recognized by the target platform.
 
 ## Implementation
@@ -90,7 +93,9 @@ interface Connector<
   ShowResultT,
   ListWorkflowContextT,
   ListAvailableAccessContextWorkflowContextT,
-  AvailableContextResultT
+  ListCustomFieldsOptionsWorkflowContextT,
+  AvailableContextResultT,
+  CustomFieldsOptionsResultT
 > {
   /**
    * @function engine
@@ -148,10 +153,19 @@ interface Connector<
    * @function listAvailableAccessContextFormat
    * @description (optional to be implemented) return the JSON schema definition to be
    * used when validating the passed ListAvailableAccessContextWorkflowContext value.
-   * The method implementation can be skippedif it doesn't need to list available
+   * The method implementation can be skipped if it doesn't need to list available
    * access context dynamically from the target platform
    */
   listAvailableAccessContextFormat()?: Record<string, unknown>
+
+  /**
+   * @function listCustomFieldsOptionsContextFormat
+   * @description (optional to be implemented) return the JSON schema definition to be
+   * used when validating the passed ListCustomFieldsOptionsWorkflowContext value.
+   * The method implementation can be skipped if it doesn't need to list custom
+   * fields options of the target platform.
+   */
+  listCustomFieldsOptionsContextFormat()?: Record<string, unknown>
 
   /**
    * @function provision
@@ -187,6 +201,13 @@ interface Connector<
    * of a target platform based on the passed context
    */
   listAvailableAccessContext(context: ListAvailableAccessContextWorkflowContextT)?: Promise<AvailableContextResultT>
+
+  /**
+   * @function listCustomFieldsOptions
+   * @description (optional to be implemented) list custom fields options
+   * of a target platform based on the passed context
+   */
+  listCustomFieldsOptions(context: ListCustomFieldsOptionsWorkflowContextT)?: Promise<CustomFieldsOptionsResultT>
 }
 ```
 
