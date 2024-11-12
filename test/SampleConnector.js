@@ -9,7 +9,7 @@ const EXECUTIONS       = [
   'show',
   'fetchBatch',
   'listAvailableAccessContext',
-  'listCustomFieldsOptions'
+  'listAccessContextExtensionOptions'
 ];
 
 const REG_VAL_SPEC       = {
@@ -64,7 +64,7 @@ const LIST_AVAILABLE_ACCESS_CONTEXT_SPEC = {
 
 const listAccessContextMock = ['context-1', 'context-2', 'context-3'];
 
-const LIST_CUSTOM_FIELDS_OPTIONS_CONTEXT_SPEC = {
+const LIST_ACCESS_CONTEXT_EXTENSION_OPTIONS_CONTEXT_SPEC = {
   type: "object",
   properties: {
     keyword: { type: 'string' },
@@ -72,18 +72,8 @@ const LIST_CUSTOM_FIELDS_OPTIONS_CONTEXT_SPEC = {
   required: [ 'keyword' ]
 }
 
-const listCustomFieldsOptionsMock = {
-  roles: [
-    {
-      key: "role-1",
-      value: "Role 1"
-    },
-    {
-      key: "role-2",
-      value: "Role 2"
-    }
-  ],
-  productHandling: [
+const listAccessContextExtensionOptionsMock = {
+  productType: [
     {
       key: "product-1",
       value: "Product 1"
@@ -95,6 +85,16 @@ const listCustomFieldsOptionsMock = {
     {
       key: "product-3",
       value: "Product 3"
+    }
+  ],
+  officeBranch: [
+    {
+      key: "branch-1",
+      value: "Branch 1"
+    },
+    {
+      key: "branch-2",
+      value: "Branch 2"
     }
   ]
 };
@@ -141,8 +141,8 @@ class SampleConnector {
     return LIST_AVAILABLE_ACCESS_CONTEXT_SPEC;
   };
 
-  listCustomFieldsOptionsContextFormat () {
-    return LIST_CUSTOM_FIELDS_OPTIONS_CONTEXT_SPEC;
+  listAccessContextExtensionOptionsContextFormat () {
+    return LIST_ACCESS_CONTEXT_EXTENSION_OPTIONS_CONTEXT_SPEC;
   };
 
   provision (context) {
@@ -165,13 +165,13 @@ class SampleConnector {
     return this.Promise.resolve(listAccessContextMock);
   }
 
-  listCustomFieldsOptions(context) {
-    return this.Promise.resolve(listCustomFieldsOptionsMock);
+  listAccessContextExtensionOptions(context) {
+    return this.Promise.resolve(listAccessContextExtensionOptionsMock);
   }
 };
 
 module.exports = {
   Connector: SampleConnector,
   listAccessContextMock,
-  listCustomFieldsOptionsMock
+  listAccessContextExtensionOptionsMock
 }
